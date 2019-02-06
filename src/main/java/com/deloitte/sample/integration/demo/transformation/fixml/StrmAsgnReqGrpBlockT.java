@@ -8,8 +8,6 @@
 
 package com.deloitte.sample.integration.demo.transformation.fixml;
 
-import com.deloitte.sample.integration.demo.transformation.fixml.fixml.PartiesBlockT;
-
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;

@@ -8,10 +8,6 @@
 
 package com.deloitte.sample.integration.demo.transformation.fixml;
 
-import com.deloitte.sample.integration.demo.transformation.fixml.fixml.AllocCommissionDataGrpBlockT;
-import com.deloitte.sample.integration.demo.transformation.fixml.fixml.AllocRegulatoryTradeIDGrpBlockT;
-import com.deloitte.sample.integration.demo.transformation.fixml.fixml.NestedParties2BlockT;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;

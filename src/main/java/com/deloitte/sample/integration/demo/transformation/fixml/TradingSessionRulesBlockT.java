@@ -8,7 +8,7 @@
 
 package com.deloitte.sample.integration.demo.transformation.fixml;
 
-import com.deloitte.sampleintegration.Demo.transformation.fixml.*;
+import com.deloitte.sample.integration.demo.transformation.fixml.*;
 
 import java.util.ArrayList;
 import java.util.List;

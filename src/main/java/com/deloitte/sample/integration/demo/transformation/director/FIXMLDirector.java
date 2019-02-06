@@ -3,7 +3,7 @@ package com.deloitte.sample.integration.demo.transformation.director;
 import com.deloitte.sample.integration.demo.transformation.builder.FIXMLBuilder;
 import com.deloitte.sample.integration.demo.transformation.builder.impl.TradeCaptureReportMessageTFIXMLBuilder;
 import com.deloitte.sample.integration.demo.transformation.fixml.TradeCaptureReportMessageT;
-import com.deloitte.sample.integration.demo.transformation.fixml.fixml.FIXML;
+import com.deloitte.sample.integration.demo.transformation.fixml.FIXML;
 
 import javax.xml.transform.dom.DOMSource;
 

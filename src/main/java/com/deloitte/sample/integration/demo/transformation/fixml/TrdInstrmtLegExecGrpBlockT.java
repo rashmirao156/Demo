@@ -8,9 +8,6 @@
 
 package com.deloitte.sample.integration.demo.transformation.fixml;
 
-import com.deloitte.sample.integration.demo.transformation.fixml.fixml.NestedParties3BlockT;
-import com.deloitte.sample.integration.demo.transformation.fixml.fixml.PositionEffectEnumT;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;

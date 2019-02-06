@@ -11,7 +11,7 @@ public class TradeRoute extends RouteBuilder {
     from("activemq:queue:testQueue")
             .to("log:?level=INFO&showBody=true")
             .split(xpath("/TRANSACTIONS/TRADE"))
-            .process(new TradeTransformer())
+            .bean(new TradeTransformer())
             .to("direct:readQueue");
 
     from("direct:readQueue")

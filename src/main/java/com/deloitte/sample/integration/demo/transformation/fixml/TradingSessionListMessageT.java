@@ -8,9 +8,6 @@
 
 package com.deloitte.sample.integration.demo.transformation.fixml;
 
-import com.deloitte.sample.integration.demo.transformation.fixml.fixml.AbstractMessageT;
-import com.deloitte.sample.integration.demo.transformation.fixml.fixml.ApplicationSequenceControlBlockT;
-
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;

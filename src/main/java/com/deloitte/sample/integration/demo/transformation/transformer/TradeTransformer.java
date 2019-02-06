@@ -1,7 +1,7 @@
 package com.deloitte.sample.integration.demo.transformation.transformer;
 
 import com.deloitte.sample.integration.demo.transformation.director.FIXMLDirector;
-import com.deloitte.sample.integration.demo.transformation.fixml.fixml.FIXML;
+import com.deloitte.sample.integration.demo.transformation.fixml.FIXML;
 import org.apache.camel.Exchange;
 import org.w3c.dom.Document;
 

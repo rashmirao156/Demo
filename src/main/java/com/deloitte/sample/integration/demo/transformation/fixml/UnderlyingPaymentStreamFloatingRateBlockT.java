@@ -8,11 +8,6 @@
 
 package com.deloitte.sample.integration.demo.transformation.fixml;
 
-import com.deloitte.sample.integration.demo.transformation.fixml.fixml.PaymentStreamInflationLagUnitEnumT;
-import com.deloitte.sample.integration.demo.transformation.fixml.fixml.PaymentStreamPaymentDateOffsetUnitEnumT;
-import com.deloitte.sample.integration.demo.transformation.fixml.fixml.PaymentStreamRateIndexCurveUnitEnumT;
-import com.deloitte.sample.integration.demo.transformation.fixml.fixml.UnitOfMeasureEnumT;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;

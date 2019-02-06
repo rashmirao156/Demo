@@ -8,8 +8,6 @@
 
 package com.deloitte.sample.integration.demo.transformation.fixml;
 
-import com.deloitte.sample.integration.demo.transformation.fixml.fixml.UnitOfMeasureEnumT;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;

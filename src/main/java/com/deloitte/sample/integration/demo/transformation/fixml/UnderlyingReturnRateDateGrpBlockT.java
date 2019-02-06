@@ -8,9 +8,6 @@
 
 package com.deloitte.sample.integration.demo.transformation.fixml;
 
-import com.deloitte.sample.integration.demo.transformation.fixml.fixml.CouponFrequencyUnitEnumT;
-import com.deloitte.sample.integration.demo.transformation.fixml.fixml.PaymentStreamPaymentDateOffsetUnitEnumT;
-
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;

@@ -8,9 +8,6 @@
 
 package com.deloitte.sample.integration.demo.transformation.fixml;
 
-import com.deloitte.sample.integration.demo.transformation.fixml.fixml.CouponFrequencyUnitEnumT;
-import com.deloitte.sample.integration.demo.transformation.fixml.fixml.SeniorityEnumT;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;

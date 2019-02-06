@@ -8,9 +8,6 @@
 
 package com.deloitte.sample.integration.demo.transformation.fixml;
 
-import com.deloitte.sample.integration.demo.transformation.fixml.fixml.SecurityUpdateActionEnumT;
-import com.deloitte.sample.integration.demo.transformation.fixml.fixml.UnsolicitedIndicatorEnumT;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
