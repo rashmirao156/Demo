@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns3:canonMessage xmlns="http://www.fixprotocol.org/FIXML-5-0-SP2"
+                  xmlns:ns2="http://www.fixprotocol.org/FIXML-5-0-SP2/METADATA"
+                  xmlns:ns3="http://www.macquarie.com/canon/v1"
+                  xmlns:ns4="http://www.macquarie.com/canon/raw/v1">
+    <ns3:header>
+        <ns3:metadata>
+            <ns3:domain>
+                <ns3:name>trading</ns3:name>
+                <ns3:schemaVersion>1.0</ns3:schemaVersion>
+                <ns3:transferrable>
+                    <ns3:name>trade</ns3:name>
+                </ns3:transferrable>
+            </ns3:domain>
+            <ns3:identifier>
+                <ns3:id>10</ns3:id>
+                <ns3:version>1</ns3:version>
+            </ns3:identifier>
+            <ns3:source>urn:mac:mam-int:brs</ns3:source>
+            <ns3:messageId>ID-VMAU21221P-1535006381348-0-4</ns3:messageId>
+        </ns3:metadata>
+        <ns3:timestamp>
+            <ns3:validDateTimeStart>2018-08-23T12:10:15.645+05:30</ns3:validDateTimeStart>
+        </ns3:timestamp>
+    </ns3:header>
+    <ns3:payload>
+        <FIXML>
+            <TrdCaptRpt TrdNum="-14" PxTyp="2" LastPx="101.0" SettlCcy="COP" TrdDt="20180523" TxnTm="20180524-15:20:39.000" SettlDt="20180524" LastUpdateTm="20180524-15:20:46.990" GrossTrdAmt="505000000" TrdVer="1">
+                <Instrmt Sym="COLTES" ID="BRT81JBL1" Src="U" SecGrp="BND" SecTyp="GOVT" MatDt="20320630" Fctr="1.0" PxQteCcy="COP" Exch="">
+                    <AID AltID="BRT81JBL1" AltIDSrc="1"/>
+                    <AID AltID="BD446H7" AltIDSrc="2"/>
+                    <AID/>
+                    <AID AltID="" AltIDSrc="N"/>
+                    <AID AltID="2268130" AltIDSrc="C"/>
+                    <AID AltID="AAON.OQ" AltIDSrc="R"/>
+                    <AID AltID="AAON US" AltIDSrc="2"/>
+                    <AID AltID="" AltIDSrc=""/>
+                    <AID AltID="" AltIDSrc=""/>
+                    <AID AltID="" AltIDSrc=""/>
+                    <Strm>
+                        <PmtStrm>
+                            <NonDlvrblTrms>
+                                <FixngDt/>
+                            </NonDlvrblTrms>
+                        </PmtStrm>
+                    </Strm>
+                </Instrmt>
+                <InstrmtExt>
+                    <Attrb Typ="5" Val="0.0"/>
+                </InstrmtExt>
+                <Yield Typ="MATURITY" Yld="0.0"/>
+                <SprdBnchmkCurve/>
+                <Amt FxRt="2864.225"/>
+                <Amt Typ="ORIG" Amt="500000000"/>
+                <Amt Typ="PAR" Amt="500000000"/>
+                <TrdRegTS TS="20180524-00:00:00.000" Typ="11"/>
+                <RptSide Side="1" SettlCcy="COP" Acct="TEST-VLD" FirmTrdEvntID="BUY" NumDaysInt="1" AcrdIntAmt="31452000" ExchSpeclInstr="NASDAQ">
+                    <Pty ID="14" Src="D" R="38"/>
+                    <Pty ID="TEST" Src="D" R="37"/>
+                    <Pty ID="TEST" Src="D" R="17"/>
+                    <Pty ID="TEST" Src="D" R="1"/>
+                    <Pty ID="cnelson" Src="D" R="118"/>
+                    <Pty ID="TST" Src="D" R="53"/>
+                    <Pty ID="TST" Src="D" R="12"/>
+                    <Pty>
+                        <Sub ID="" Typ="52"/>
+                    </Pty>
+                    <Pty>
+                        <Sub ID="" Typ="25"/>
+                    </Pty>
+                    <Pty>
+                        <Sub ID="" Typ="25"/>
+                    </Pty>
+                    <Pty>
+                        <Sub ID="" Typ="24"/>
+                    </Pty>
+                    <Pty ID="" Src="D" R="21"/>
+                    <SettlDetails>
+                        <Pty ID="" Src="D" R="10"/>
+                    </SettlDetails>
+                </RptSide>
+            </TrdCaptRpt>
+        </FIXML>
+    </ns3:payload>
+</ns3:canonMessage>
