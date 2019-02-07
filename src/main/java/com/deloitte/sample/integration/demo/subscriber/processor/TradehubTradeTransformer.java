@@ -31,12 +31,11 @@ public class TradehubTradeTransformer {
     }
 
     @Handler
-    public TradehubTrade transform(/*FIXML fixml, @Header(Exchange.BREADCRUMB_ID) UUID trackingID, @Header("comments") String comments*/){
+    public TradehubTrade transform(FIXML fixml){
         TradehubTrade tradehubTrade = new TradehubTrade();
-        /*if(!comments.isEmpty())
-            tradehubTrade.setComments(comments);
 
-        tradehubTrade.setInputId(BRS_INPUT_ID);
+
+        /*tradehubTrade.setInputId(BRS_INPUT_ID);
         tradehubTrade.setExchRateMultiDivInd(EXCHANGE_RATE_MULT_DIV_INDICATOR);
 
         // Sourced From: FIXML/TrdCptRpt
@@ -48,8 +47,9 @@ public class TradehubTradeTransformer {
         // Sourced From: FIXML/TrdCptRpt/RptSide
         TrdCapRptSideGrpBlockT rptSideGrpBlock = tradeCaptureReport.getRptSide().get(0);
 
-        // Sourced From: FIXML/RptSide/SettleDetails
-*/
+        // Sourced From: FIXML/RptSide/SettleDetails*/
+
+        // Added for Testing
         tradehubTrade.setAccruedInt(new BigDecimal(12.12));
         tradehubTrade.setAccruedIntDays(new BigDecimal(12.12));
 

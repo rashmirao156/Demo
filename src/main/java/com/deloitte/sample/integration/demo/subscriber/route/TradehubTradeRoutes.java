@@ -20,7 +20,7 @@ public class TradehubTradeRoutes extends RouteBuilder {
     @Override
     public void configure() throws Exception{
         DataFormat formatter =
-                new JaxbDataFormat("com.deloitte.sample.integration.demo.transformation.fixml:com.deloitte.sample.integration.demo.transformation.fixml");
+                new JaxbDataFormat("com.deloitte.sample.integration.demo.transformation.fixml");
 
         onException(Exception.class)
                 .logHandled(true)
@@ -28,8 +28,7 @@ public class TradehubTradeRoutes extends RouteBuilder {
 
         from(TRADE_PROCESSING_ROUTE_URI)
                 .routeId(TRADE_ROUTE_BASE_ID)
-//                .unmarshal(formatter)
-//                .transform(simple("body.payload.content[0]"))
+                .unmarshal(formatter)
                 .bean(tradehubTradeTransformer)
                 .to(SqlOutboundTradeGateway.TRADEHUB_INSERT_TRADE_ROUTE_URI);
 
