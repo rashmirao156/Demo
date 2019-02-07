@@ -20,7 +20,7 @@ import java.sql.SQLException;
 @Component
 public class TradehubDeliverTradeService {
 
-    private static final String INSERT = "insert into TRADEHUB.ALADDIN_RAW_TRADES (ACCURED_INT, ACCURED_INT_DAYS) values (?, ?)";
+    private static final String INSERT = "insert into TRADEHUB.ALADDIN_RAW_TRADES (TRD_NUM, TRD_VER, SETTL_CCY, TXN_TM, LAST_UPDATE_TM, LAST_PX, GROSS_TRD_AMT, TRANS_TYP, TRD_DT) values (?,?,?,?,?,?,?,?,?)";
     private static final String DELETE = "";
 
     private DataSource tradehubDataSource ;
@@ -51,8 +51,15 @@ public class TradehubDeliverTradeService {
     protected PreparedStatement generateInsertTradePreparedStatement(Connection connection, TradehubTrade tradehubTrade) throws SQLException {
         PreparedStatement query = connection.prepareStatement(INSERT);
         int i = 0;
-        query.setBigDecimal(++i, tradehubTrade.getAccruedInt());
-        query.setBigDecimal(++i, tradehubTrade.getAccruedIntDays());
+        query.setBigDecimal(++i, new BigDecimal(tradehubTrade.getTrdNum()));
+        query.setString(++i, tradehubTrade.getTrdVer());
+        query.setString(++i, tradehubTrade.getSettlCcy());
+        query.setString(++i, tradehubTrade.getTxnTm().toString());
+        query.setString(++i, tradehubTrade.getLastUpdateTm().toString());
+        query.setBigDecimal(++i, tradehubTrade.getLastPx());
+        query.setBigDecimal(++i, tradehubTrade.getGrossTrdAmt());
+        query.setBigDecimal(++i, new BigDecimal(tradehubTrade.getTransTyp()));
+        query.setString(++i, tradehubTrade.getTrdDt());
         return query;
     }
 

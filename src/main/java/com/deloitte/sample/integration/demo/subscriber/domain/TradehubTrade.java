@@ -5,8 +5,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.xml.datatype.XMLGregorianCalendar;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
+import java.sql.Date;
 import java.util.UUID;
 
 @Builder
@@ -16,15 +19,14 @@ import java.util.UUID;
 public class TradehubTrade {
 
     //Direct Mapping from FIXML
-    private LocalDate createdt;
-    private String updateBy;
-    private String blockId;
-    private String brokerCode;
-    private String inputId;
-    private  String comments;
-    private UUID trackingID;
-    private String exchRateMultiDivInd;
-    private BigDecimal accruedIntDays;
-    private BigDecimal accruedInt;
+    private BigInteger trdNum ;
+    private String trdVer;
+    private String settlCcy;
+    private String txnTm;
+    private String lastUpdateTm;
+    private BigDecimal lastPx;
+    private BigDecimal grossTrdAmt;
+    private BigInteger transTyp;
+    private String trdDt;
 
 }
