@@ -1,6 +1,6 @@
 package com.deloitte.sample.integration.demo.subscriber.gateway;
 
-import com.deloitte.sample.integration.demo.configuration.PropertiesConfiguration;
+import com.deloitte.sample.integration.demo.subscriber.configuration.TradeSubScriberConfiguration;
 import com.deloitte.sample.integration.demo.subscriber.route.TradehubTradeRoutes;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.camel.builder.RouteBuilder;
@@ -16,7 +16,7 @@ public class JmsInboundTradeGateway extends RouteBuilder {
     public static final String HANDLE_UNROUTABLE_MESSAGE_URI = "direct:adp-unroutable-message";
 
     @Autowired
-    PropertiesConfiguration propertiesConfiguration;
+    TradeSubScriberConfiguration tradeSubScriberConfiguration;
 
     @Override
     public void configure() throws Exception{
@@ -26,7 +26,7 @@ public class JmsInboundTradeGateway extends RouteBuilder {
                 .log("unable to route message ${body}")
                 .handled(true);
 
-        from(propertiesConfiguration.getJmsInboundGatewayUri())
+        from(tradeSubScriberConfiguration.getJmsInboundGatewayUri())
                 .routeId(TRADEHUB_TRADE_QUEUE_ROUTE_ID)
                 .to(TradehubTradeRoutes.TRADE_PROCESSING_ROUTE_URI);
     }

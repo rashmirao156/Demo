@@ -20,7 +20,7 @@ public class TradehubTradeRoutes extends RouteBuilder {
     @Override
     public void configure() throws Exception{
         DataFormat formatter =
-                new JaxbDataFormat("com.deloitte.sample.integration.demo.transformation.fixml");
+                new JaxbDataFormat("com.deloitte.sample.integration.demo.publisher.transformation.fixml");
 
         onException(Exception.class)
                 .logHandled(true)

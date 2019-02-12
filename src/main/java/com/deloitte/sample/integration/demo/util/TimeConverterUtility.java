@@ -1,6 +1,6 @@
 package com.deloitte.sample.integration.demo.util;
 
-import com.deloitte.sample.integration.demo.constant.TradeMappingConstants;
+import com.deloitte.sample.integration.demo.publisher.constant.TradeMappingConstants;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.xml.datatype.DatatypeConfigurationException;

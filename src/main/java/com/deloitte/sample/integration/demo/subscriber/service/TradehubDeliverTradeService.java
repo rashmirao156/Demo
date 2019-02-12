@@ -1,6 +1,6 @@
 package com.deloitte.sample.integration.demo.subscriber.service;
 
-import com.deloitte.sample.integration.demo.configuration.PropertiesConfiguration;
+import com.deloitte.sample.integration.demo.subscriber.configuration.TradeSubScriberConfiguration;
 import com.deloitte.sample.integration.demo.subscriber.domain.TradehubTrade;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +28,7 @@ public class TradehubDeliverTradeService {
     private String instanceID;
 
     @Autowired
-    public TradehubDeliverTradeService(DataSource tradehubDataSource, PropertiesConfiguration propeties){
+    public TradehubDeliverTradeService(DataSource tradehubDataSource, TradeSubScriberConfiguration propeties){
         this.tradehubDataSource = tradehubDataSource;
         instanceID = propeties.getInstanceId();
     }
