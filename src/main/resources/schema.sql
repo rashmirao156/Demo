@@ -11,5 +11,5 @@ CREATE TABLE TRADEHUB.ALADDIN_RAW_TRADES(
     LAST_PX varchar(255) null,
     GROSS_TRD_AMT varchar(255) null,
     TRANS_TYP varchar(255) null,
-    TRD_DT varchar(255) null,
+    TRD_DT varchar(255) null
 );
