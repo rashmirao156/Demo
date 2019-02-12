@@ -14,9 +14,6 @@ import java.math.BigInteger;
 @Slf4j
 @Component
 public class TradehubTradeTransformer {
-  public static final String PARTY_CCP_RINDEX = "4";
-  private static final String BRS_INPUT_ID = "BRS";
-  private static final String EXCHANGE_RATE_MULT_DIV_INDICATOR = "M";
 
   private DataSource tradehubDataSource;
 
