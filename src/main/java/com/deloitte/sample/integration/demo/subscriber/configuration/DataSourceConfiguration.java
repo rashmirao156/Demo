@@ -12,9 +12,14 @@ import javax.sql.DataSource;
 public class DataSourceConfiguration {
 
   @Bean(name = "tradehubDataSource")
-  @Primary
   @ConfigurationProperties(prefix = "integration.demo.tradehub")
   public DataSource tradehubDataSource() {
+    return new HikariDataSource();
+  }
+
+  @Bean(name = "securityDataSource")
+  @ConfigurationProperties(prefix = "integration.demo.markitedm")
+  public DataSource securityDataSource() {
     return new HikariDataSource();
   }
 }

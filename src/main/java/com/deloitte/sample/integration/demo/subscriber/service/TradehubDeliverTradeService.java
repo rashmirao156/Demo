@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.camel.Handler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +25,7 @@ public class TradehubDeliverTradeService {
       "insert into TRADEHUB.ALADDIN_RAW_TRADES (TRD_NUM, TRD_VER, SETTL_CCY, TXN_TM, LAST_UPDATE_TM, LAST_PX, GROSS_TRD_AMT, TRANS_TYP, TRD_DT) values (?,?,?,?,?,?,?,?,?)";
   private static final String DELETE = "";
 
+  @Qualifier("tradehubDataSource")
   private DataSource tradehubDataSource;
 
   private String instanceID;
