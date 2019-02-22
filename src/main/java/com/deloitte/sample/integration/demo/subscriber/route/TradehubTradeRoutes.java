@@ -11,26 +11,22 @@ import org.springframework.stereotype.Component;
 @Component
 public class TradehubTradeRoutes extends RouteBuilder {
 
-    public static final String TRADE_ROUTE_BASE_ID = "tradehub-trade-route";
-    public static final String TRADE_PROCESSING_ROUTE_URI = "direct:"+ TRADE_ROUTE_BASE_ID;
+  public static final String TRADE_ROUTE_BASE_ID = "tradehub-trade-route";
+  public static final String TRADE_PROCESSING_ROUTE_URI = "direct:" + TRADE_ROUTE_BASE_ID;
 
-    @Autowired
-    TradehubTradeTransformer tradehubTradeTransformer;
+  @Autowired TradehubTradeTransformer tradehubTradeTransformer;
 
-    @Override
-    public void configure() throws Exception{
-        DataFormat formatter =
-                new JaxbDataFormat("com.deloitte.sample.integration.demo.publisher.transformation.fixml");
+  @Override
+  public void configure() throws Exception {
+    DataFormat formatter =
+        new JaxbDataFormat("com.deloitte.sample.integration.demo.publisher.transformation.fixml");
 
-        onException(Exception.class)
-                .logHandled(true)
-                .handled(true);
+    onException(Exception.class).logHandled(true).handled(true);
 
-        from(TRADE_PROCESSING_ROUTE_URI)
-                .routeId(TRADE_ROUTE_BASE_ID)
-                .unmarshal(formatter)
-                .bean(tradehubTradeTransformer)
-                .to(SqlOutboundTradeGateway.TRADEHUB_INSERT_TRADE_ROUTE_URI);
-
-    }
+    from(TRADE_PROCESSING_ROUTE_URI)
+        .routeId(TRADE_ROUTE_BASE_ID)
+        .unmarshal(formatter)
+        .bean(tradehubTradeTransformer)
+        .to(SqlOutboundTradeGateway.TRADEHUB_INSERT_TRADE_ROUTE_URI);
+  }
 }

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix = "integration.publish.demo")
 public class TradePublisherConfiguration {
-    private String tradePublishInboundJmsUri;
-    private String tradePublishOutboundJmsUri;
-
+  private String tradePublishInboundJmsUri;
+  private String tradePublishOutboundJmsUri;
+  private String tradeAckPublishJmsUri;
 }

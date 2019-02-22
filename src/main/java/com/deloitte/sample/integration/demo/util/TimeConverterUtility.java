@@ -32,12 +32,13 @@ public class TimeConverterUtility {
     }
   }
 
-  public static XMLGregorianCalendar getTargetFormat(String inputStr){
-      if(null==inputStr||inputStr==""){
-          return null;
-      }
-      return  getDateAsXMLGregorianCalendar(inputStr);
+  public static XMLGregorianCalendar getTargetFormat(String inputStr) {
+    if (null == inputStr || inputStr == "") {
+      return null;
+    }
+    return getDateAsXMLGregorianCalendar(inputStr);
   }
+
   public static XMLGregorianCalendar getDateAsXMLGregorianCalendar(String inputStr) {
     if (null == inputStr || inputStr == "") {
       return null;
@@ -74,11 +75,11 @@ public class TimeConverterUtility {
       log.debug("Unable to parse input {} as LocalDate. returning null", inputStr);
       return null;
     }
-
   }
-  public static XMLGregorianCalendar getXMLGregorianCalendarNow(){
-      DateFormat dateFormat = new SimpleDateFormat(TradeMappingConstants.SOURCE_DATETIME_FORMAT);
-      Date date = new Date();
-      return  TimeConverterUtility.getTargetFormat(dateFormat.format(date));
+
+  public static XMLGregorianCalendar getXMLGregorianCalendarNow() {
+    DateFormat dateFormat = new SimpleDateFormat(TradeMappingConstants.SOURCE_DATETIME_FORMAT);
+    Date date = new Date();
+    return TimeConverterUtility.getTargetFormat(dateFormat.format(date));
   }
 }

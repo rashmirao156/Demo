@@ -1,30 +1,26 @@
 package com.deloitte.sample.integration.demo.subscriber.gateway;
 
-import com.deloitte.sample.integration.demo.subscriber.domain.TradehubTrade;
-import com.deloitte.sample.integration.demo.subscriber.route.TradehubTradeRoutes;
 import com.deloitte.sample.integration.demo.subscriber.service.TradehubDeliverTradeService;
-import org.apache.camel.Exchange;
-import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.component.direct.DirectConsumerNotAvailableException;
 import org.springframework.stereotype.Component;
 
 @Component
 public class SqlOutboundTradeGateway extends RouteBuilder {
 
-    public static  final String TRADE_INSERT_TRADE_ROUTE_ID = "tradehub-trade-insert";
-    public static final String TRADEHUB_INSERT_TRADE_ROUTE_URI = "direct:"+TRADE_INSERT_TRADE_ROUTE_ID;
+  public static final String TRADE_INSERT_TRADE_ROUTE_ID = "tradehub-trade-insert";
+  public static final String TRADEHUB_INSERT_TRADE_ROUTE_URI =
+      "direct:" + TRADE_INSERT_TRADE_ROUTE_ID;
 
-    @Override
-    public void configure() throws Exception{
+  @Override
+  public void configure() throws Exception {
 
-        onException(Exception.class )
-                .logHandled(true)
-                .log("unable to route message ${body}")
-                .handled(true);
+    onException(Exception.class)
+        .logHandled(true)
+        .log("unable to route message ${body}")
+        .handled(true);
 
-        from(TRADEHUB_INSERT_TRADE_ROUTE_URI)
-                .routeId(TRADE_INSERT_TRADE_ROUTE_ID)
-                .bean(TradehubDeliverTradeService.class);
-    }
+    from(TRADEHUB_INSERT_TRADE_ROUTE_URI)
+        .routeId(TRADE_INSERT_TRADE_ROUTE_ID)
+        .bean(TradehubDeliverTradeService.class);
+  }
 }

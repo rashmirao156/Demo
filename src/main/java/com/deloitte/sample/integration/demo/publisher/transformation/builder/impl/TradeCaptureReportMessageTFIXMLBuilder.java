@@ -2,9 +2,9 @@ package com.deloitte.sample.integration.demo.publisher.transformation.builder.im
 
 import com.deloitte.sample.integration.demo.publisher.constant.TradeMappingConstants;
 import com.deloitte.sample.integration.demo.publisher.transformation.builder.FIXMLBuilder;
-import com.deloitte.sample.integration.demo.publisher.transformation.fixml.TradeCaptureReportMessageT;
 import com.deloitte.sample.integration.demo.publisher.transformation.fixml.AbstractMessageT;
 import com.deloitte.sample.integration.demo.publisher.transformation.fixml.FIXML;
+import com.deloitte.sample.integration.demo.publisher.transformation.fixml.TradeCaptureReportMessageT;
 import com.deloitte.sample.integration.demo.util.DomElementUtility;
 import com.deloitte.sample.integration.demo.util.TimeConverterUtility;
 import org.w3c.dom.Document;

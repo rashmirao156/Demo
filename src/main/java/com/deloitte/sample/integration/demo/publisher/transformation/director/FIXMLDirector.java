@@ -2,8 +2,8 @@ package com.deloitte.sample.integration.demo.publisher.transformation.director;
 
 import com.deloitte.sample.integration.demo.publisher.transformation.builder.FIXMLBuilder;
 import com.deloitte.sample.integration.demo.publisher.transformation.builder.impl.TradeCaptureReportMessageTFIXMLBuilder;
-import com.deloitte.sample.integration.demo.publisher.transformation.fixml.TradeCaptureReportMessageT;
 import com.deloitte.sample.integration.demo.publisher.transformation.fixml.FIXML;
+import com.deloitte.sample.integration.demo.publisher.transformation.fixml.TradeCaptureReportMessageT;
 
 import javax.xml.transform.dom.DOMSource;
 

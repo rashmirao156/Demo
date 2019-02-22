@@ -1,8 +1,8 @@
 package com.deloitte.sample.integration.demo.subscriber.processor;
 
-import com.deloitte.sample.integration.demo.subscriber.domain.TradehubTrade;
 import com.deloitte.sample.integration.demo.publisher.transformation.fixml.FIXML;
 import com.deloitte.sample.integration.demo.publisher.transformation.fixml.TradeCaptureReportMessageT;
+import com.deloitte.sample.integration.demo.subscriber.domain.TradehubTrade;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.camel.Handler;
 import org.springframework.beans.factory.annotation.Autowired;

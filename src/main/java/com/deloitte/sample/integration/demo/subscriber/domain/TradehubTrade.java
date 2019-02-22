@@ -5,12 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.xml.datatype.XMLGregorianCalendar;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.time.LocalDate;
-import java.sql.Date;
-import java.util.UUID;
 
 @Builder
 @Data
@@ -18,15 +14,14 @@ import java.util.UUID;
 @AllArgsConstructor
 public class TradehubTrade {
 
-    //Direct Mapping from FIXML
-    private BigInteger trdNum ;
-    private String trdVer;
-    private String settlCcy;
-    private String txnTm;
-    private String lastUpdateTm;
-    private BigDecimal lastPx;
-    private BigDecimal grossTrdAmt;
-    private BigInteger transTyp;
-    private String trdDt;
-
+  // Direct Mapping from FIXML
+  private BigInteger trdNum;
+  private String trdVer;
+  private String settlCcy;
+  private String txnTm;
+  private String lastUpdateTm;
+  private BigDecimal lastPx;
+  private BigDecimal grossTrdAmt;
+  private BigInteger transTyp;
+  private String trdDt;
 }

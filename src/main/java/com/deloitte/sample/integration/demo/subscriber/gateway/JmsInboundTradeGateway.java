@@ -12,22 +12,21 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class JmsInboundTradeGateway extends RouteBuilder {
 
-    public static  final String TRADEHUB_TRADE_QUEUE_ROUTE_ID = "trade_subscriber_queue";
-    public static final String HANDLE_UNROUTABLE_MESSAGE_URI = "direct:adp-unroutable-message";
+  public static final String TRADEHUB_TRADE_QUEUE_ROUTE_ID = "trade_subscriber_queue";
+  public static final String HANDLE_UNROUTABLE_MESSAGE_URI = "direct:adp-unroutable-message";
 
-    @Autowired
-    TradeSubScriberConfiguration tradeSubScriberConfiguration;
+  @Autowired TradeSubScriberConfiguration tradeSubScriberConfiguration;
 
-    @Override
-    public void configure() throws Exception{
+  @Override
+  public void configure() throws Exception {
 
-        onException(DirectConsumerNotAvailableException.class )
-                .logHandled(true)
-                .log("unable to route message ${body}")
-                .handled(true);
+    onException(DirectConsumerNotAvailableException.class)
+        .logHandled(true)
+        .log("unable to route message ${body}")
+        .handled(true);
 
-        from(tradeSubScriberConfiguration.getJmsInboundGatewayUri())
-                .routeId(TRADEHUB_TRADE_QUEUE_ROUTE_ID)
-                .to(TradehubTradeRoutes.TRADE_PROCESSING_ROUTE_URI);
-    }
+    from(tradeSubScriberConfiguration.getJmsInboundGatewayUri())
+        .routeId(TRADEHUB_TRADE_QUEUE_ROUTE_ID)
+        .to(TradehubTradeRoutes.TRADE_PROCESSING_ROUTE_URI);
+  }
 }

@@ -10,23 +10,22 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class TradePublishInboundGateway extends RouteBuilder {
-    public static final String TRADE_PUBLISH_ROUTE_URI ="direct:trade-publish-route-uri" ;
+  public static final String TRADE_PUBLISH_ROUTE_URI = "direct:trade-publish-route-uri";
 
-    public static  final String TRADEPUBLISH_TRADE_QUEUE_ROUTE_ID = "trade_publisher_queue";
+  public static final String TRADEPUBLISH_TRADE_QUEUE_ROUTE_ID = "trade_publisher_queue";
 
-    @Autowired
-    TradePublisherConfiguration tradePublisherConfiguration;
+  @Autowired TradePublisherConfiguration tradePublisherConfiguration;
 
-    @Override
-    public void configure() throws Exception{
+  @Override
+  public void configure() throws Exception {
 
-        onException(DirectConsumerNotAvailableException.class )
-                .logHandled(true)
-                .log("unable to route message ${body}")
-                .handled(true);
+    onException(DirectConsumerNotAvailableException.class)
+        .logHandled(true)
+        .log("unable to route message ${body}")
+        .handled(true);
 
-        from(tradePublisherConfiguration.getTradePublishInboundJmsUri())
-                .routeId(TRADEPUBLISH_TRADE_QUEUE_ROUTE_ID)
-                .to(TRADE_PUBLISH_ROUTE_URI);
-    }
+    from(tradePublisherConfiguration.getTradePublishInboundJmsUri())
+        .routeId(TRADEPUBLISH_TRADE_QUEUE_ROUTE_ID)
+        .to(TRADE_PUBLISH_ROUTE_URI);
+  }
 }

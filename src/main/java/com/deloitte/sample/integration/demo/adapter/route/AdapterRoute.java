@@ -23,14 +23,13 @@ public class AdapterRoute extends RouteBuilder {
      sends acknowledgement  that message was recieved,
      forwards the message to outbound queue*/
     from(adapterConfiguration.getAdapterInboundQueueUri())
-        // .to("drect:recievedtrackinguri")
+        .wireTap(TrackingRoute.RECIEVED_TRACKING_ROUTE)
         // .to("direct:ack-route")
         .setHeader(APP_NAME_JMS_HEADER, constant("accelerator-adapter"))
         .setHeader(MESSAGE_VERSION_JMS_HEADER, constant("1.0.0"))
         .setHeader(SERVICE_VERSION_JMS_HEADER, constant("1.0.0"))
         .setHeader(MESSAGE_TYPE_JMS_HEADER, constant("raw"))
         .to(adapterConfiguration.getAdapterOutboundQueueUri())
-    // .to("drect:senttrackinguri")
-    ;
+        .wireTap(TrackingRoute.SENT_TRACKING_ROUTE);
   }
 }
