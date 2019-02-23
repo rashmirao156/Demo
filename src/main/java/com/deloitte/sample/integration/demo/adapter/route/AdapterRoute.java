@@ -39,6 +39,17 @@ public class AdapterRoute extends RouteBuilder {
             .setHeader(SERVICE_VERSION_JMS_HEADER, constant("1.0.0"))
             .setHeader(MESSAGE_TYPE_JMS_HEADER, constant("raw"))
             .to(adapterConfiguration.getAdpSecurityOutboundQueueUri());
+
+    from(adapterConfiguration.getAdpEODSecurityInboundQueueUri())
+            // .to("direct:ack-route")
+            .setHeader(APP_NAME_JMS_HEADER, constant("accelerator-adapter"))
+            .setHeader(MESSAGE_VERSION_JMS_HEADER, constant("1.0.0"))
+            .setHeader(SERVICE_VERSION_JMS_HEADER, constant("1.0.0"))
+            .setHeader(MESSAGE_TYPE_JMS_HEADER, constant("raw"))
+            .to(adapterConfiguration.getAdpEODSecurityOutboundQueueUri());
   }
+
+
+
 
 }
