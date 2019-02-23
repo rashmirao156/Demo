@@ -3,17 +3,16 @@ package com.deloitte.sample.integration.demo.publisher.transformation.builder.im
 import com.deloitte.sample.integration.demo.publisher.constant.SecurityMappingConstants;
 import com.deloitte.sample.integration.demo.publisher.transformation.securitycanon.ASSETS;
 import com.deloitte.sample.integration.demo.util.DomElementUtility;
-import com.deloitte.sample.integration.demo.util.TimeConverterUtility;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import javax.xml.transform.dom.DOMSource;
 
-public class IssueDetailsBuilder {
+public class SecurityIdentifierBuilder {
 
-  public ASSETS.ASSET.ISSUEDETAILS setIssueDetails(DOMSource source) {
-    ASSETS.ASSET.ISSUEDETAILS issueDetails = new ASSETS.ASSET.ISSUEDETAILS();
+  public ASSETS.ASSET.SECURITYIDENTIFIERS setSecurityIdentifiers(DOMSource source) {
+    ASSETS.ASSET.SECURITYIDENTIFIERS securityIdentifiers = new ASSETS.ASSET.SECURITYIDENTIFIERS();
     Node node = source.getNode();
     if (!(node instanceof Document)) {
       return null;
@@ -22,10 +21,8 @@ public class IssueDetailsBuilder {
     Element element = document.getDocumentElement();
 
     DomElementUtility utility = new DomElementUtility(element);
-    issueDetails.setAGENCY(utility.getElementContentAsString(SecurityMappingConstants.AGENCY));
-    issueDetails.setACCRUALDT(
-        TimeConverterUtility.getTargetFormat(
-            utility.getElementContentAsString(SecurityMappingConstants.ACCURAL_DT)));
-    return issueDetails;
+    securityIdentifiers.setCUSIP(utility.getElementContentAsString(SecurityMappingConstants.CUSIP));
+
+    return securityIdentifiers;
   }
 }

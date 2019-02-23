@@ -9,6 +9,9 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "integration.adapter.demo")
 public class AdapterConfiguration {
 
-  private String adapterInboundQueueUri;
-  private String adapterOutboundQueueUri;
+  private String adpTradeInboundQueueUri;
+  private String adpTradeOutboundQueueUri;
+
+  private String adpSecurityInboundQueueUri;
+  private String adpSecurityOutboundQueueUri;
 }

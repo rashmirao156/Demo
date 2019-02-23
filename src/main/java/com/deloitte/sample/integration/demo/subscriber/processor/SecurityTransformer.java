@@ -1,7 +1,7 @@
 package com.deloitte.sample.integration.demo.subscriber.processor;
 
 import com.deloitte.sample.integration.demo.publisher.transformation.securitycanon.ASSETS;
-import com.deloitte.sample.integration.demo.subscriber.domain.IssueDetails;
+import com.deloitte.sample.integration.demo.subscriber.domain.Security;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.camel.Handler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,17 +25,19 @@ public class SecurityTransformer {
   }
 
   @Handler
-  public List<IssueDetails> transform(ASSETS assets) {
+  public List<Security> transform(ASSETS assets) {
     List<ASSETS.ASSET> assetList = new ArrayList<>();
-    List<IssueDetails> issueDetailsList = new ArrayList<>();
+    List<Security> securityList = new ArrayList<>();
     assetList = assets.getASSET();
     for (ASSETS.ASSET assetObj : assetList) {
       ASSETS.ASSET.ISSUEDETAILS issueDetails = assetObj.getISSUEDETAILS();
-      IssueDetails issueDetailsModel = new IssueDetails();
-      issueDetailsModel.setAccuralDt(issueDetails.getACCRUALDT().toString());
-      issueDetailsModel.setAgency(issueDetails.getAGENCY());
-      issueDetailsList.add(issueDetailsModel);
+      ASSETS.ASSET.SECURITYIDENTIFIERS securityidentifiers = assetObj.getSECURITYIDENTIFIERS();
+      Security securityModel = new Security();
+      securityModel.setAccuralDt(issueDetails.getACCRUALDT().toString());
+      securityModel.setAgency(issueDetails.getAGENCY());
+      securityModel.setCusip(securityidentifiers.getCUSIP());
+      securityList.add(securityModel);
     }
-    return issueDetailsList;
+    return securityList;
   }
 }

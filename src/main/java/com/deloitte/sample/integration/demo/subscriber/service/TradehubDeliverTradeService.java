@@ -22,7 +22,7 @@ import java.sql.SQLException;
 public class TradehubDeliverTradeService {
 
   private static final String INSERT =
-      "insert into TRADEHUB.ALADDIN_RAW_TRADES (TRD_NUM, TRD_VER, SETTL_CCY, TXN_TM, LAST_UPDATE_TM, LAST_PX, GROSS_TRD_AMT, TRANS_TYP, TRD_DT) values (?,?,?,?,?,?,?,?,?)";
+      "insert into TRADEHUB.TRADES (TRD_NUM, TRD_VER, SETTL_CCY, TXN_TM, LAST_UPDATE_TM, LAST_PX, GROSS_TRD_AMT, TRANS_TYP, TRD_DT) values (?,?,?,?,?,?,?,?,?) on DUPLICATE KEY UPDATE LAST_UPDATE_TM=VALUES(LAST_UPDATE_TM)";
   private static final String DELETE = "";
 
   @Qualifier("tradehubDataSource")

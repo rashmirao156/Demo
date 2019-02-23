@@ -47,7 +47,6 @@ public class TradeCaptureReportMessageTFIXMLBuilder implements FIXMLBuilder {
         utility.getElementContentAsString(TradeMappingConstants.TOUCHCOUNT));
     tradeCaptureReportMessageT.setSettlCcy(
         utility.getElementContentAsString(TradeMappingConstants.TRD_CURRENCY));
-
     tradeCaptureReportMessageT.setLastPx(
         utility.getElementContentAsBigDecimal(TradeMappingConstants.TRD_PRICE));
     tradeCaptureReportMessageT.setGrossTrdAmt(
