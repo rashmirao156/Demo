@@ -23,14 +23,18 @@ public class TradeCaptureReportMessageTFIXMLBuilder implements FIXMLBuilder {
     this.tradeCaptureReportMessageT = tradeCaptureReportMessageT;
   }
 
-  public FIXML build(final DOMSource tradeDomSource) {
-    // TODO DomSource to Element conversion logic
+  public TradeCaptureReportMessageT build(final DOMSource tradeDomSource) {
     Node node = tradeDomSource.getNode();
-    if (!(node instanceof Document)) {
+    Element element = null;
+    if (node instanceof Document) {
+      Document document = (Document) node;
+      element = document.getDocumentElement();
+    } else if(node instanceof  Element) {
+      element = (Element) node;
+    } else {
       return null;
     }
-    Document document = (Document) tradeDomSource.getNode();
-    Element element = document.getDocumentElement();
+
 
     DomElementUtility utility = new DomElementUtility(element);
 
@@ -53,6 +57,11 @@ public class TradeCaptureReportMessageTFIXMLBuilder implements FIXMLBuilder {
         utility.getElementContentAsBigDecimal(TradeMappingConstants.TRD_PRINCIPAL));
     tradeCaptureReportMessageT.setTransTyp(
         utility.getElementContentAsInteger(TradeMappingConstants.TRD_STATUS));
+
+    return  tradeCaptureReportMessageT;
+  }
+
+  public FIXML build() throws  Exception{
     FIXML fixml = new FIXML();
     fixml.setMessage(getJaxbElement(tradeCaptureReportMessageT));
 
