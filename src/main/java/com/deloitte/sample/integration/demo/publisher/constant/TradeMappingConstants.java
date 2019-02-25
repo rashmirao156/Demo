@@ -8,6 +8,7 @@ public class TradeMappingConstants {
   public static final String EXECUTION_TIME = "EXECUTION_TIME";
   public static final String INVNUM = "INVNUM";
   public static final String TOUCHCOUNT = "TOUCHCOUNT";
+  public static final String TOUCH_COUNT = "TOUCH_COUNT";
   public static final String TRD_CURRENCY = "TRD_CURRENCY";
   public static final String TRD_MODIFY_TIME = "TRD_MODIFY_TIME";
   public static final String TRD_PRICE = "TRD_PRICE";

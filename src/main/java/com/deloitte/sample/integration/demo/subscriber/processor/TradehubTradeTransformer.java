@@ -1,7 +1,9 @@
 package com.deloitte.sample.integration.demo.subscriber.processor;
 
 import com.deloitte.sample.integration.demo.publisher.transformation.fixml.FIXML;
+import com.deloitte.sample.integration.demo.publisher.transformation.fixml.InstrumentBlockT;
 import com.deloitte.sample.integration.demo.publisher.transformation.fixml.TradeCaptureReportMessageT;
+import com.deloitte.sample.integration.demo.publisher.transformation.fixml.TrdCapRptSideGrpBlockT;
 import com.deloitte.sample.integration.demo.subscriber.domain.TradehubTrade;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.camel.Handler;
@@ -46,6 +48,25 @@ public class TradehubTradeTransformer {
         tradeCaptureReport.getTrdVer() == null ? "" : tradeCaptureReport.getTrdVer());
     tradehubTrade.setTxnTm(
         tradeCaptureReport.getTxnTm() == null ? "" : tradeCaptureReport.getTxnTm().toString());
+
+
+    // Setting CUSIP
+    InstrumentBlockT instrumentBlockT = tradeCaptureReport.getInstrmt();
+    tradehubTrade.setCusip(instrumentBlockT.getID());
+
+    // Setting FUND
+    TrdCapRptSideGrpBlockT trdCapRptSideGrpBlockT = (tradeCaptureReport.getRptSide() == null) ? null : tradeCaptureReport.getRptSide().get(0);
+
+    if(trdCapRptSideGrpBlockT != null) {
+      trdCapRptSideGrpBlockT.getPty().forEach(
+              s -> {
+                if(s.getR().equals(new BigInteger("38")) &&
+              (s.getSrc().equals("D"))) {
+                  tradehubTrade.setFund(s.getID());
+                }
+              });
+    }
+
     return tradehubTrade;
   }
 }

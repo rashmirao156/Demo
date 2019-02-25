@@ -11,6 +11,8 @@ CREATE TABLE TRADEHUB.TRADES(
     LAST_PX varchar(255) null,
     GROSS_TRD_AMT varchar(255) null,
     TRANS_TYP varchar(255) null,
+    CUSIP varchar(255) null,
+    FUND varchar(255) null,
     TRD_DT varchar(255) null
 );
 

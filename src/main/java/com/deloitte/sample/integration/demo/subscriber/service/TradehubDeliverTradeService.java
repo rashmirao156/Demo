@@ -12,9 +12,7 @@ import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.math.BigDecimal;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 @Data
 @Slf4j
@@ -22,7 +20,7 @@ import java.sql.SQLException;
 public class TradehubDeliverTradeService {
 
   private static final String INSERT =
-      "insert into TRADEHUB.TRADES (TRD_NUM, TRD_VER, SETTL_CCY, TXN_TM, LAST_UPDATE_TM, LAST_PX, GROSS_TRD_AMT, TRANS_TYP, TRD_DT) values (?,?,?,?,?,?,?,?,?) on DUPLICATE KEY UPDATE LAST_UPDATE_TM=VALUES(LAST_UPDATE_TM)";
+      "insert into TRADEHUB.TRADES (TRD_NUM, TRD_VER, SETTL_CCY, TXN_TM, LAST_UPDATE_TM, LAST_PX, GROSS_TRD_AMT, TRANS_TYP, CUSIP, FUND, TRD_DT) values (?,?,?,?,?,?,?,?,?,?,?) on DUPLICATE KEY UPDATE TRD_DT=VALUES(TRD_DT)";
   private static final String DELETE = "";
 
   @Qualifier("tradehubDataSource")
@@ -62,7 +60,9 @@ public class TradehubDeliverTradeService {
     query.setBigDecimal(++i, tradehubTrade.getLastPx());
     query.setBigDecimal(++i, tradehubTrade.getGrossTrdAmt());
     query.setBigDecimal(++i, new BigDecimal(tradehubTrade.getTransTyp()));
-    query.setString(++i, tradehubTrade.getTrdDt());
+    query.setString(++i, tradehubTrade.getCusip());
+    query.setString(++i, tradehubTrade.getFund());
+    query.setString(++i, new Timestamp(System.currentTimeMillis()).toLocalDateTime().toString());
     return query;
   }
 }

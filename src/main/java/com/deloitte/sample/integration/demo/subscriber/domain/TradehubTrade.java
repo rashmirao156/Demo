@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 @Builder
 @Data
@@ -24,4 +26,7 @@ public class TradehubTrade {
   private BigDecimal grossTrdAmt;
   private BigInteger transTyp;
   private String trdDt;
+  private String cusip;
+  private String fund;
+  private Timestamp lastUpdatedTime;
 }
