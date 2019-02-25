@@ -140,7 +140,7 @@ public class TradeMappingConstants {
   public static final String TOUCH_COUNT_KEY = "//TOUCH_COUNT";
 
 
-  static {
+    static {
     CATEGORY_SUBTYPE_MAP.put("AMFE", SUB_TYPE_OTHERFEE);
     CATEGORY_SUBTYPE_MAP.put("ASFE", SUB_TYPE_OTHERFEE);
     CATEGORY_SUBTYPE_MAP.put("CCPF", SUB_TYPE_COMMISSION);
