@@ -50,9 +50,9 @@ public class FileProcessor {
         if (outboundFileName.equals(GlobalConstants.TRADE_FILE_NAME)) {
           nuggetMessageMap.put(GlobalConstants.TRADE_KEY, getFileContent(outboundFileName));
         } else if (outboundFileName.equals(GlobalConstants.SECURITY_FILE_NAME)) {
-          nuggetMessageMap.put(GlobalConstants.TRADE_KEY, getFileContent(outboundFileName));
+          nuggetMessageMap.put(GlobalConstants.SECURITY_KEY, getFileContent(outboundFileName));
         } else if (outboundFileName.equals(GlobalConstants.PRICE_FILE_NAME)) {
-          nuggetMessageMap.put(GlobalConstants.TRADE_KEY, getFileContent(outboundFileName));
+          nuggetMessageMap.put(GlobalConstants.PRICE_KEY, getFileContent(outboundFileName));
         }
       }
     }

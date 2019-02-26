@@ -26,13 +26,15 @@ public class TradePublishRoute extends RouteBuilder {
   DataFormat formatter =
       new JaxbDataFormat("com.deloitte.sample.integration.demo.publisher.transformation.fixml");
 
-    @Autowired
-    TradePublisherConfiguration tradeConfiguration;
+  @Autowired TradePublisherConfiguration tradeConfiguration;
 
   @Override
   public void configure() throws Exception {
     from(TradePublishInboundGateway.TRADE_PUBLISH_ROUTE_URI)
-        .to("log:?level=INFO&showBody=true")
+        .to(
+            "log:?level=INFO&showExchangeId=true&showBody=false&multiline=true&showBodyType=false&showExchangePattern=false")
+        .to(
+            "log:Consumed TRADE XML from Inbound TRADE Queue. Starting Processing...?level=INFO&showExchangeId=true&showBody=false&multiline=true&showBodyType=false&showExchangePattern=false")
         .process(new TradeNuggetProcessor())
         .split(xpath("/TRANSACTIONS/TRADE"))
         .setProperty(
@@ -43,12 +45,18 @@ public class TradePublishRoute extends RouteBuilder {
         .to("direct:publish");
 
     from("direct:publish")
-        .to("log:?level=INFO&showBody=true")
+        .to(
+            "log:?level=INFO&showExchangeId=true&showBody=false&multiline=true&showBodyType=false&showExchangePattern=false")
         .marshal(formatter)
-
-        .to(tradeConfiguration.getFixmlOutboundDirURI() +
-                "${exchangeProperty.FIXML_FILE_NAME}")
+        .to(
+            "log:TRADE TRANSFORMATION to FIXML Completed...?level=INFO&showExchangeId=true&showBody=false&multiline=true&showBodyType=false&showExchangePattern=false")
+        .to(tradeConfiguration.getFixmlOutboundDirURI() + "${exchangeProperty.FIXML_FILE_NAME}")
+        .to(
+            "log:FIXML written to TRADE outbound folder:"
+                + "?level=INFO&showExchangeId=true&showBody=false&multiline=true&showBodyType=false&showExchangePattern=false")
         .to(TradePublishOutboundGateway.PUBLISH_TRADE_ROUTE_OUTBOUND_GATEWAY_URI)
+        .to(
+            "log:FIXML pushed to TRADE outbound Queue?level=INFO&showExchangeId=true&showBody=false&multiline=true&showBodyType=false&showExchangePattern=false")
         .bean(TradeAckProcessor.class, "setSuccessfulTrade")
         .setHeader(TradeMappingConstants.ACK_MAP_HEADER_KEY, body())
         .to("direct:publish-ack-trade");
@@ -60,6 +68,8 @@ public class TradePublishRoute extends RouteBuilder {
               System.out.print(exchange.getProperty(TradeMappingConstants.ACK_MAP_HEADER_KEY));
             })
         .to("freemarker:acknowledgement.ftl")
-        .to(TradePublishOutboundGateway.PUBLISH_ACK_TRADE);
+        .to(TradePublishOutboundGateway.PUBLISH_ACK_TRADE)
+        .to(
+            "log:SUCCESS ACK message sent to TRADE ACK Queue?level=INFO&showExchangeId=true&showBody=false&multiline=true&showBodyType=false&showExchangePattern=false");
   }
 }
