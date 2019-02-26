@@ -21,9 +21,9 @@ public class SecurityRoute extends RouteBuilder {
   public void configure() throws Exception {
     from(SecurityPublishInboundGateway.SECURITY_PUBLISH_ROUTE_URI)
         .to(
-            "log:?level=INFO&showExchangeId=true&showBody=false&multiline=true&showBodyType=false&showExchangePattern=false")
+            "log:?level=DEBUG&showExchangeId=true&showBody=false&multiline=true&showBodyType=false&showExchangePattern=false")
         .to(
-            "log:Consumed SECURITY XML from Inbound SECURITY Queue. Starting Processing...?level=INFO&showExchangeId=true&showBody=false&multiline=true&showBodyType=false&showExchangePattern=false")
+            "log:Consumed SECURITY XML from Inbound SECURITY Queue. Starting Processing...?level=DEBUG&showExchangeId=true&showBody=false&multiline=true&showBodyType=false&showExchangePattern=false")
         .process(new SecurityNuggetProcessor())
         .split(xpath("/ASSETS/ASSET"))
         .convertBodyTo(Document.class)
@@ -32,12 +32,12 @@ public class SecurityRoute extends RouteBuilder {
 
     from("direct:publish-security")
         .to(
-            "log:?level=INFO&showExchangeId=true&showBody=false&multiline=true&showBodyType=false&showExchangePattern=false")
+            "log:?level=DEBUG&showExchangeId=true&showBody=false&multiline=true&showBodyType=false&showExchangePattern=false")
         .marshal(formatter)
         .to(
-            "log:SECURITY TRANSFORMATION Completed...?level=INFO&showExchangeId=true&showBody=false&multiline=true&showBodyType=false&showExchangePattern=false")
+            "log:SECURITY TRANSFORMATION Completed...?level=DEBUG&showExchangeId=true&showBody=false&multiline=true&showBodyType=false&showExchangePattern=false")
         .to(SecurityPublishOutboundGateway.PUBLISH_SECURITY_ROUTE_OUTBOUND_GATEWAY_URI)
         .to(
-            "log:SECURITY OUTPUL XML pushed to SECURITY outbound Queue?level=INFO&showExchangeId=true&showBody=false&multiline=true&showBodyType=false&showExchangePattern=false");
+            "log:SECURITY OUTPUL XML pushed to SECURITY outbound Queue?level=DEBUG&showExchangeId=true&showBody=false&multiline=true&showBodyType=false&showExchangePattern=false");
   }
 }

@@ -26,7 +26,7 @@ public class AdapterRoute extends RouteBuilder {
      sends acknowledgement  that message was recieved,
      forwards the message to outbound queue*/
     from(adapterConfiguration.getAdpInboundDirURI())
-        .to("log:?level=INFO&showExchangeId=true&showBody=false&multiline=true&showBodyType=false&showExchangePattern=false")
+        .to("log:?level=DEBUG&showExchangeId=true&showBody=false&multiline=true&showBodyType=false&showExchangePattern=false")
         // showExchangeId
         .wireTap(TrackingRoute.RECIEVED_TRACKING_ROUTE)
         // .to("direct:ack-route")
@@ -39,14 +39,14 @@ public class AdapterRoute extends RouteBuilder {
         .to(
             "log:Unzipped Trade Nuggets from: " +  adapterConfiguration.getAdpInboundDir() +
                     " and copied to: " + adapterConfiguration.getAdpOutboundDir() +
-                    "?level=INFO&showExchangeId=true&showBody=false&multiline=true&showBodyType=false&showExchangePattern=false")
+                    "?level=DEBUG&showExchangeId=true&showBody=false&multiline=true&showBodyType=false&showExchangePattern=false")
         .bean(method(unzipFilesProcessor, "getMapFromAdapterOutboundDir"))
         .to(adapterConfiguration.getAdpTradeOutboundQueueUri())
         .to(
-            "log:Pushed unzipped file contents to TRADE Inbound Queue ?level=INFO&showExchangeId=true&showBody=false&multiline=true&showBodyType=false&showExchangePattern=false")
+            "log:Pushed unzipped file contents to TRADE Inbound Queue ?level=DEBUG&showExchangeId=true&showBody=false&multiline=true&showBodyType=false&showExchangePattern=false")
         .to(adapterConfiguration.getAdpSecurityOutboundQueueUri())
         .to(
-            "log:Pushed unzipped file contents to SECURITY Inbound Queue ?level=INFO&showExchangeId=true&showBody=false&multiline=true&showBodyType=false&showExchangePattern=false")
+            "log:Pushed unzipped file contents to SECURITY Inbound Queue ?level=DEBUG&showExchangeId=true&showBody=false&multiline=true&showBodyType=false&showExchangePattern=false")
         .wireTap(TrackingRoute.SENT_TRACKING_ROUTE);
 
     //    from(adapterConfiguration.getAdpSecurityInboundQueueUri())
