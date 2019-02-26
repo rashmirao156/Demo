@@ -11,4 +11,5 @@ public class TradePublisherConfiguration {
   private String tradePublishInboundJmsUri;
   private String tradePublishOutboundJmsUri;
   private String tradeAckPublishJmsUri;
+  private String fixmlOutboundDirURI;
 }

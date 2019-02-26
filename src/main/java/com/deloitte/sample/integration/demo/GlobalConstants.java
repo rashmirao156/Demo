@@ -9,4 +9,6 @@ public class GlobalConstants {
     public static final String TRADE_FILE_NAME = "transaction.xml";
     public static final String SECURITY_FILE_NAME = "sm.xml";
     public static final String PRICE_FILE_NAME = "price.xml";
+
+    public static final String FIXML_FILE_NAME_KEY = "FIXML_FILE_NAME";
 }

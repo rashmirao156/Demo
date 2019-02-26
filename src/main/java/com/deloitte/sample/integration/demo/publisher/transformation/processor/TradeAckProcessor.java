@@ -1,5 +1,6 @@
 package com.deloitte.sample.integration.demo.publisher.transformation.processor;
 
+import com.deloitte.sample.integration.demo.GlobalConstants;
 import com.deloitte.sample.integration.demo.publisher.constant.TradeAckTemplateFields;
 import com.deloitte.sample.integration.demo.publisher.constant.TradeMappingConstants;
 import org.apache.camel.Exchange;
@@ -11,38 +12,37 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class  TradeAckProcessor {
+public class TradeAckProcessor {
   public Map<String, String> createTemplateData(
+      Exchange exchange,
       @XPath(TradeMappingConstants.FUNDXPATH) String fund,
       @XPath(TradeMappingConstants.INVNUMXPATH) String inv) {
 
     Map<String, String> data = new HashMap<>();
     data.put(TradeAckTemplateFields.FUNDKEY, fund);
     data.put(TradeAckTemplateFields.INVNUMKEY, inv);
+
+    exchange.setProperty(GlobalConstants.FIXML_FILE_NAME_KEY, fund + "-" + inv + ".xml");
     return data;
   }
 
   public void setSuccessfulTrade(
-      @ExchangeProperty(TradeMappingConstants.ACK_MAP_HEADER_KEY)
-          Map<String, String> ackDataMap,
+      @ExchangeProperty(TradeMappingConstants.ACK_MAP_HEADER_KEY) Map<String, String> ackDataMap,
       Exchange exchange) {
 
-      ackDataMap.put(TradeAckTemplateFields.ACK_CODE_KEY,TradeMappingConstants.ACK_SUCCESS_CODE);
-      ackDataMap.put(TradeAckTemplateFields.ACK_MESSAGE_KEY,TradeMappingConstants.ACK_SUCCESS_MESSAGE);
-
-
+    ackDataMap.put(TradeAckTemplateFields.ACK_CODE_KEY, TradeMappingConstants.ACK_SUCCESS_CODE);
+    ackDataMap.put(
+        TradeAckTemplateFields.ACK_MESSAGE_KEY, TradeMappingConstants.ACK_SUCCESS_MESSAGE);
   }
 
-    public void setFailedTrade(
-            @ExchangeProperty(TradeMappingConstants.ACK_MAP_HEADER_KEY)
-                    Map<String, String> ackDataMap,
-            Exchange exchange) {
+  public void setFailedTrade(
+      @ExchangeProperty(TradeMappingConstants.ACK_MAP_HEADER_KEY) Map<String, String> ackDataMap,
+      Exchange exchange) {
 
-        ackDataMap.put(TradeAckTemplateFields.ACK_CODE_KEY,TradeMappingConstants.ACK_FAILURE_CODE);
-        ackDataMap.put(TradeAckTemplateFields.ACK_MESSAGE_KEY,TradeMappingConstants.ACK_FAILURE_MESSAGE);
-
-
-    }
+    ackDataMap.put(TradeAckTemplateFields.ACK_CODE_KEY, TradeMappingConstants.ACK_FAILURE_CODE);
+    ackDataMap.put(
+        TradeAckTemplateFields.ACK_MESSAGE_KEY, TradeMappingConstants.ACK_FAILURE_MESSAGE);
+  }
 
   public List<Map<String, String>> split(Exchange exchange) {
     Map<String, Map<String, String>> aggregatedAckDataMap =
