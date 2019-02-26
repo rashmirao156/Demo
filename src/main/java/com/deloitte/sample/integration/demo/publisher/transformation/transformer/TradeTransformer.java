@@ -9,6 +9,7 @@ import org.springframework.xml.xpath.XPathOperations;
 import org.w3c.dom.Document;
 
 import javax.xml.transform.dom.DOMSource;
+import java.util.Map;
 
 public class TradeTransformer {
 
@@ -16,8 +17,6 @@ public class TradeTransformer {
 
   public FIXML transform(Document trade) throws Exception {
 
-//    System.out.print("INCOMING MESSAGE IS :" + exchange.getIn().getBody().toString());
-//    Document body = (Document) exchange.getIn().getBody();
     DOMSource tradeSource = new DOMSource(template.evaluateAsNode(TradeMappingConstants.TRADE_ROOT, new DOMSource(trade)));
     FIXMLDirector fixmlDirector = new FIXMLDirector(tradeSource);
     return fixmlDirector.construct();

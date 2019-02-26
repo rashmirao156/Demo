@@ -46,6 +46,8 @@ dependencies {
     // https://mvnrepository.com/artifact/org.springframework.ws/spring-xml
     compile group: 'org.springframework.ws', name: 'spring-xml', version: '2.4.2.RELEASE'
 
+// https://mvnrepository.com/artifact/commons-io/commons-io
+    compile group: 'commons-io', name: 'commons-io', version: '2.6'
 
 
 

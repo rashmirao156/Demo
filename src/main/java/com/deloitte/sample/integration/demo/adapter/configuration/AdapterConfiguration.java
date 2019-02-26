@@ -17,4 +17,10 @@ public class AdapterConfiguration {
 
   private String adpEODSecurityInboundQueueUri;
   private String adpEODSecurityOutboundQueueUri;
+
+  private String adpInboundDir;
+  private String adpOutboundDir;
+
+  private String adpInboundDirURI;
+  private String adpOutboundDirURI;
 }
