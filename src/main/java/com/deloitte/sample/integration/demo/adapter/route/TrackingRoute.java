@@ -1,13 +1,11 @@
 package com.deloitte.sample.integration.demo.adapter.route;
 
-
 import com.deloitte.sample.integration.demo.adapter.constant.AdapterTrackingStatus;
+import com.deloitte.sample.integration.demo.adapter.tracking.BusinessData;
 import com.deloitte.sample.integration.demo.adapter.tracking.DefaultTrackingRoute;
 import com.deloitte.sample.integration.demo.adapter.tracking.TrackingSample;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
-
-import java.util.UUID;
 
 @Component
 public class TrackingRoute extends RouteBuilder {
@@ -21,7 +19,11 @@ public class TrackingRoute extends RouteBuilder {
         .process(
             exchange -> {
               TrackingSample trackingSample = new TrackingSample();
-              trackingSample.setId(UUID.randomUUID());
+              trackingSample.setId(exchange.getExchangeId());
+              BusinessData businessData = new BusinessData();
+              businessData.setFund(exchange.getProperty("FUND", String.class));
+              businessData.setInvNum(exchange.getProperty("INVNUM", String.class));
+              trackingSample.setBusinessData(businessData);
               trackingSample.setTrackingStatus(AdapterTrackingStatus.RECEIVED);
               exchange.getIn().setBody(trackingSample);
             })
@@ -31,7 +33,11 @@ public class TrackingRoute extends RouteBuilder {
         .process(
             exchange -> {
               TrackingSample trackingSample = new TrackingSample();
-              trackingSample.setId(UUID.randomUUID());
+              trackingSample.setId(exchange.getExchangeId());
+              BusinessData businessData = new BusinessData();
+              businessData.setFund(exchange.getProperty("FUND", String.class));
+              businessData.setInvNum(exchange.getProperty("INVNUM", String.class));
+              trackingSample.setBusinessData(businessData);
               trackingSample.setTrackingStatus(AdapterTrackingStatus.SENT);
               exchange.getIn().setBody(trackingSample);
             })

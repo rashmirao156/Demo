@@ -22,7 +22,7 @@ public class TradeAckProcessor {
     data.put(TradeAckTemplateFields.FUNDKEY, fund);
     data.put(TradeAckTemplateFields.INVNUMKEY, inv);
 
-    exchange.setProperty(GlobalConstants.FIXML_FILE_NAME_KEY, fund + "-" + inv + ".xml");
+    exchange.setProperty(GlobalConstants.FIXML_FILE_NAME_KEY, fund + "-" + inv );
     return data;
   }
 

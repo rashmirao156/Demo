@@ -25,8 +25,10 @@ public class AdapterRoute extends RouteBuilder {
      adds headers enabling tracking,
      sends acknowledgement  that message was recieved,
      forwards the message to outbound queue*/
+    // log:?level=DEBUG&showExchangeId=true&showBody=false&multiline=true&showBodyType=false&showExchangePattern=false"
     from(adapterConfiguration.getAdpInboundDirURI())
-        .to("log:?level=DEBUG&showExchangeId=true&showBody=false&multiline=true&showBodyType=false&showExchangePattern=false")
+        .setProperty("log_message", constant("Adapter :: Started processing Aladdin Nugget file"))
+        .wireTap(StatusRoute.LOG_ADAPTER_STATUS)
         // showExchangeId
         .wireTap(TrackingRoute.RECIEVED_TRACKING_ROUTE)
         // .to("direct:ack-route")
@@ -36,17 +38,18 @@ public class AdapterRoute extends RouteBuilder {
         .setHeader(MESSAGE_TYPE_JMS_HEADER, constant("raw"))
         // .to(adapterConfiguration.getAdpTradeOutboundQueueUri())
         .bean(method(unzipFilesProcessor, "searchInboundDirForZipFiles"))
-        .to(
-            "log:Unzipped Trade Nuggets from: " +  adapterConfiguration.getAdpInboundDir() +
-                    " and copied to: " + adapterConfiguration.getAdpOutboundDir() +
-                    "?level=DEBUG&showExchangeId=true&showBody=false&multiline=true&showBodyType=false&showExchangePattern=false")
+        .setProperty(
+            "log_message",
+            constant(
+                "Adapter :: Unzipping Trade Nuggets ..."
+                    ))
+        .wireTap(StatusRoute.LOG_ADAPTER_STATUS)
         .bean(method(unzipFilesProcessor, "getMapFromAdapterOutboundDir"))
         .to(adapterConfiguration.getAdpTradeOutboundQueueUri())
-        .to(
-            "log:Pushed unzipped file contents to TRADE Inbound Queue ?level=DEBUG&showExchangeId=true&showBody=false&multiline=true&showBodyType=false&showExchangePattern=false")
+        .setProperty(
+            "log_message", constant("Adapter :: Pushed unzipped file contents to Trade publish Queue"))
+        .wireTap(StatusRoute.LOG_ADAPTER_STATUS)
         .to(adapterConfiguration.getAdpSecurityOutboundQueueUri())
-        .to(
-            "log:Pushed unzipped file contents to SECURITY Inbound Queue ?level=DEBUG&showExchangeId=true&showBody=false&multiline=true&showBodyType=false&showExchangePattern=false")
         .wireTap(TrackingRoute.SENT_TRACKING_ROUTE);
 
     //    from(adapterConfiguration.getAdpSecurityInboundQueueUri())

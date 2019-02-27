@@ -1,11 +1,13 @@
 package com.deloitte.sample.integration.demo.adapter.tracking;
 
+import lombok.Data;
+
 import java.io.Serializable;
-import java.util.UUID;
+
 
 public class TrackingSample implements Serializable {
 
-  private UUID id;
+  private String id;
 
   public String getTrackingStatus() {
     return trackingStatus;
@@ -17,16 +19,31 @@ public class TrackingSample implements Serializable {
 
   private String trackingStatus;
 
-  public UUID getId() {
+  public BusinessData getBusinessData() {
+    return businessData;
+  }
+
+  public void setBusinessData(BusinessData businessData) {
+    this.businessData = businessData;
+  }
+
+  private BusinessData businessData;
+
+  public String getId() {
     return id;
   }
 
-  public void setId(UUID id) {
+  public void setId(String id) {
     this.id = id;
   }
 
+
   @Override
   public String toString() {
-    return "TrackingSample{" + "id=" + id + ", trackingStatus='" + trackingStatus + '\'' + '}';
+    return "TrackingSample{" +
+            "id='" + id + '\'' +
+            ", trackingStatus='" + trackingStatus + '\'' +
+            ", businessData=" + businessData +
+            '}';
   }
 }
