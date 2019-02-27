@@ -13,7 +13,11 @@ CREATE TABLE TRADEHUB.TRADES(
     TRANS_TYP varchar(255) null,
     CUSIP varchar(255) null,
     FUND varchar(255) null,
-    TRD_DT varchar(255) null
+    LAST_INSERT_TM varchar(255) null,
+    ORIGFACE BIGINT null,
+    SEC_TYPE varchar(255) null,
+    PORTFOLIO_NAME varchar(255) null
+
 );
 
 CREATE SCHEMA IF NOT EXISTS MARKITEDM;

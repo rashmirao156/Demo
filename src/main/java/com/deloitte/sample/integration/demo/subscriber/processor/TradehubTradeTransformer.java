@@ -37,10 +37,6 @@ public class TradehubTradeTransformer {
             ? ""
             : tradeCaptureReport.getLastUpdateTm().toString());
     tradehubTrade.setSettlCcy(tradeCaptureReport.getSettlCcy());
-    tradehubTrade.setTransTyp(
-        tradeCaptureReport.getTransTyp() == null
-            ? BigInteger.valueOf(0)
-            : tradeCaptureReport.getTransTyp());
     tradehubTrade.setTrdDt(
         tradeCaptureReport.getTrdDt() == null ? "" : tradeCaptureReport.getTrdDt().toString());
     tradehubTrade.setTrdNum(tradeCaptureReport.getTrdNum());
@@ -49,19 +45,40 @@ public class TradehubTradeTransformer {
     tradehubTrade.setTxnTm(
         tradeCaptureReport.getTxnTm() == null ? "" : tradeCaptureReport.getTxnTm().toString());
 
+    // Setting ORIGFACE
+    if (!tradeCaptureReport.getAmt().isEmpty()) {
+      tradeCaptureReport
+          .getAmt()
+          .forEach(
+              s -> {
+                if (s != null && s.getTyp().equals("ORIG")) {
+                  tradehubTrade.setOrigFace(s.getAmt());
+                }
+              });
+    }
 
     // Setting CUSIP
     InstrumentBlockT instrumentBlockT = tradeCaptureReport.getInstrmt();
     tradehubTrade.setCusip(instrumentBlockT.getID());
 
-    // Setting FUND
-    TrdCapRptSideGrpBlockT trdCapRptSideGrpBlockT = (tradeCaptureReport.getRptSide() == null) ? null : tradeCaptureReport.getRptSide().get(0);
+    // Setting SEC_TYPE
+    tradehubTrade.setSecType(instrumentBlockT.getSecTyp());
 
-    if(trdCapRptSideGrpBlockT != null) {
-      trdCapRptSideGrpBlockT.getPty().forEach(
+    // Setting FUND
+    TrdCapRptSideGrpBlockT trdCapRptSideGrpBlockT =
+        (tradeCaptureReport.getRptSide() == null) ? null : tradeCaptureReport.getRptSide().get(0);
+
+    if (trdCapRptSideGrpBlockT != null) {
+      // Setting TRAN_TYPE
+      tradehubTrade.setTransTyp(trdCapRptSideGrpBlockT.getFirmTrdEvntID());
+
+      // Setting PORTFOLIO_NAME
+      tradehubTrade.setPortfolioName(trdCapRptSideGrpBlockT.getAcct());
+      trdCapRptSideGrpBlockT
+          .getPty()
+          .forEach(
               s -> {
-                if(s.getR().equals(new BigInteger("38")) &&
-              (s.getSrc().equals("D"))) {
+                if (s.getR().equals(new BigInteger("38")) && (s.getSrc().equals("D"))) {
                   tradehubTrade.setFund(s.getID());
                 }
               });

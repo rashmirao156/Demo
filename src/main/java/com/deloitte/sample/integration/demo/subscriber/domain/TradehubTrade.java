@@ -24,9 +24,13 @@ public class TradehubTrade {
   private String lastUpdateTm;
   private BigDecimal lastPx;
   private BigDecimal grossTrdAmt;
-  private BigInteger transTyp;
+  private String transTyp;
   private String trdDt;
   private String cusip;
   private String fund;
   private Timestamp lastUpdatedTime;
+  private String portfolioName;
+  private String secType;
+  private BigDecimal origFace;
+
 }
